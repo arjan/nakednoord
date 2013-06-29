@@ -107,7 +107,8 @@ event(#postback{message={geo_check, _}}, Context) ->
 %%    lager:warning("Dist: ~p", [Dist]),
     Vars = [{id, Id},
             {dist, Dist},
-            {ok, Dist < 0.004575305325603731}], %% warning - hardcoded nr :p
+            {ok, Dist < 10.004575305325603731}], %% warning - hardcoded nr :p
+%            {ok, Dist < 0.004575305325603731}], %% warning - hardcoded nr :p
     Html = z_template:render("_current_location.tpl", Vars, Context),
     z_render:update("current-location", Html, Context).
 

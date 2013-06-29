@@ -6,9 +6,10 @@
 
 <h2>This location has the following items:</h2>
 
-{% for id in id.o.depiction %}
+{% for id in id.o.depiction|without_embedded_media:id %}
 
-    {% image id width=100 class="pull-left" %}
+    <p>{% image id width=100 class="pull-left" %}<br /><strong>{{ id.title }}</strong></p>
+    
     
 {% endfor %}
 

@@ -11,7 +11,7 @@
 
             
             <a class="brand" href="/">
-                {% if m.acl.user %}<img id="avatar" src="{% image_url m.acl.user.depiction width=32 lossless %}" style="height:20px" />{% endif %}
+                {% if m.acl.user and m.acl.user.depiction %}<img id="avatar" src="{% image_url m.acl.user.depiction width=32 lossless %}" style="height:20px" />{% endif %}
                 {{ m.config.site.title.value }}
             </a>
                 
@@ -23,6 +23,9 @@
                             </li>
                             <li>
                                 <a href="/whereami">Where am I?</a>
+                            </li>                                    
+                            <li>
+                                <a href="/logoff">Exit</a>
                             </li>                                    
                         {% else %}
                         {% endif %}

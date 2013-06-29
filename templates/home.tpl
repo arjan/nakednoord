@@ -14,8 +14,17 @@
         {% endjavascript %}
     {% else %}
 
-        <h1>Welcome to Naked Noord!</h1>
-        <p>You need to sign in to start.</p>
+        <h1>Welkom bij de Naakte Noorderlingen!</h1>
+
+        <p>
+            Discover <em>Amsterdam Noord</em> by visiting historical locations and learning about the history of the city.
+        </p>
+
+        <p>
+            At the same time, dress up your avatar with the historical garments you find along the way!
+        </p>
+        
+        <p class="alert alert-info">You need to sign in to start.</p>
 
         <p>
             <a href="{% url facebook_authorize %}"><img src="/lib/images/fb-login-button.png" width="154" height="22" alt="Facebook login button" /></a>
