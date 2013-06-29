@@ -1,0 +1,6 @@
+%% -*- mode: erlang -*-
+%% Put your dispatch rules here.
+[
+ {home,      [],	controller_template,  	[ {template, "home.tpl"} ]},
+ {whereami,      ["whereami"],	controller_template,  	[ {template, "map.tpl"} ]}
+].
