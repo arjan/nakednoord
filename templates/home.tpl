@@ -4,8 +4,13 @@
 
 {% block content %}
     {% if m.acl.user %}
+        
         {% javascript %}
-            document.location.href = '/whereami';
+            {% if m.acl.user.depiction[1] %}
+                document.location.href = '/whereami';
+            {% else %}
+                document.location.href = '{{ m.acl.user.page_url }}';
+            {% endif %}
         {% endjavascript %}
     {% else %}
 
