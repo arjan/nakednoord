@@ -17,7 +17,7 @@
 
         <p>
             <br /><br />
-            <a class="btn btn-primary btn-large">Go to the map to start the game!</a>
+            <a href="/whereami" class="btn btn-primary btn-large">Go to the map to start the game!</a>
         </p>
     
     {% endif %}

@@ -99,11 +99,15 @@ event(#postback{message={geo_check, _}}, Context) ->
     Lat = z_convert:to_float(z_context:get_q("lat", Context)),
 
     LocationCat = m_rsc:name_to_id_check(location, Context),
-    Query = "SELECT id, (point($1, $2) OPERATOR(public.<@>) point(p.lon, p.lat))/1.60934 as dist FROM rsc JOIN pivot_nakednoord p USING (id) WHERE category_id=$3 order by dist LIMIT 1",
+    %%Query = "SELECT id, (point($1, $2) OPERATOR(public.<@>) point(p.lon, p.lat))/1.60934 as dist FROM rsc JOIN pivot_nakednoord p USING (id) WHERE category_id=$3 order by dist LIMIT 1",
+    Query = "SELECT id, sqrt(($1-p.lon)*($1-p.lon) + ($2-p.lat)*($2-p.lat)) as dist FROM rsc JOIN pivot_nakednoord p USING (id) WHERE category_id=$3 order by dist LIMIT 1",
+    
     [{Id, Dist}] = z_db:q(Query, [Lon, Lat, LocationCat], Context),
+    
+    lager:warning("Dist: ~p", [Dist]),
     Vars = [{id, Id},
             {dist, Dist},
-            {ok, Dist < 0.5}],
+            {ok, Dist < 0.004575305325603731}],
     Html = z_template:render("_current_location.tpl", Vars, Context),
     z_render:update("current-location", Html, Context).
 
