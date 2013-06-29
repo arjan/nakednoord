@@ -9,8 +9,7 @@
         {% endjavascript %}
     {% else %}
 
-        <br /><br /><br /><br />
-        <h1>Naked noord!</h1>
+        <h1>Welcome to Naked Noord!</h1>
         <p>You need to sign in to start.</p>
 
         <p>
