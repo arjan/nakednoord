@@ -13,4 +13,8 @@
         {% endfor %}
     </ul>        
 
+    {% javascript %}
+        setTimeout(function() { document.location.reload(); }, 10000);
+    {% endjavascript %}
+    
 {% endblock %}
