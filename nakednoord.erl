@@ -186,9 +186,11 @@ event(#postback{message={add_garment, [{id, Id}]}}, Context) ->
 
 event(#submit{message={change_outfit, _}}, Context) ->
     Wearing = lists:foldl(
-                fun ({"c_" ++ _, R}, Acc) ->
-                       [list_to_integer(R) | Acc];
-                   (_X, Acc) -> Acc
+                fun ({"c_" ++ _, []}, Acc) ->
+                        Acc;
+                    ({"c_" ++ _, R}, Acc) ->
+                        [list_to_integer(R) | Acc];
+                    (_X, Acc) -> Acc
                end,
                [],
                 z_context:get_q_all(Context)),
