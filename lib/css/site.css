@@ -42,3 +42,7 @@ div.location-top {
   margin-bottom: 10px; }
   div.location-top h3 {
     margin-bottom: 10px; }
+
+p.person-title {
+  font-weight: bold;
+  text-align: center; }
