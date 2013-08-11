@@ -4,7 +4,6 @@
 
 {{ id.body|show_media }}
 
-
 {% with m.notifier.first[{available_garments id=id}] as my_garments, other_garments %}
 
     {% if my_garments %}

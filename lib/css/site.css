@@ -16,6 +16,20 @@ div.avatar {
     top: 8.7%;
     left: 31.5%;
     width: 38%; }
+  div.avatar img.accessory {
+    z-index: 10; }
+  div.avatar img.head {
+    z-index: 9; }
+  div.avatar img.body {
+    z-index: 8; }
+  div.avatar img.trousers {
+    z-index: 7; }
+  div.avatar img.shoes {
+    z-index: 6; }
 
 div.avatar.small {
   width: 300px; }
+
+@media (max-width: 600px) {
+  div.avatar {
+    width: 100%; } }

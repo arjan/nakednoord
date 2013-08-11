@@ -19,10 +19,10 @@
                     <ul class="nav">
                         {% if m.acl.user %}
                             <li>
-                                <a href="{{ m.acl.user.page_url }}">Your avatar</a>
+                                <a href="{{ m.acl.user.page_url }}">Jouw avatar</a>
                             </li>
                             <li>
-                                <a href="/whereami">Where am I?</a>
+                                <a href="/whereami">Bekijk kaart</a>
                             </li>                                    
                             <li>
                                 <a href="/logoff">Exit</a>
