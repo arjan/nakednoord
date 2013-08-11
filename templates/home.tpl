@@ -3,6 +3,7 @@
 {% block title %}{{ m.site.title }}{% endblock %}
 
 {% block content %}
+
     {% if m.acl.user %}
         
         {% javascript %}
@@ -14,7 +15,7 @@
         {% endjavascript %}
     {% else %}
 
-        <h1>Welkom bij de Naakte Noorderlingen!</h1>
+        <h1>Welkom bij de Naakte Noorderling!</h1>
 
         <p>
             Discover <em>Amsterdam Noord</em> by visiting historical locations and learning about the history of the city.

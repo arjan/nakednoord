@@ -12,7 +12,7 @@
             
             <a class="brand" href="/">
                 {% if m.acl.user and m.acl.user.depiction %}<img id="avatar" src="{% image_url m.acl.user.depiction width=32 lossless %}" style="height:20px" />{% endif %}
-                {{ m.config.site.title.value }}
+                De Naakte Noorderling
             </a>
                 
                 <div class="nav-collapse">
