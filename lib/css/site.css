@@ -3,9 +3,19 @@ div.content {
   /*    margin-top: 90px;*/ }
 
 div.avatar {
-  position: relative; }
+  position: relative;
+  width: 600px; }
+  div.avatar img {
+    width: 100%; }
+  div.avatar img.garment {
+    position: absolute;
+    top: 0;
+    left: 0; }
   div.avatar img.face {
     position: absolute;
-    top: 78px;
-    left: 191px;
-    width: 219px; }
+    top: 8.7%;
+    left: 31.5%;
+    width: 38%; }
+
+div.avatar.small {
+  width: 300px; }

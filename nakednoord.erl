@@ -33,6 +33,10 @@
          observe_logon_ready_page/2,
          observe_custom_pivot/2,
          manage_schema/2,
+         
+         observe_available_garments/2,
+         observe_grouped_garments/2,
+         
          event/2
         ]).
 
@@ -44,6 +48,35 @@
 init(Context) ->
     z_pivot_rsc:define_custom_pivot(?MODULE, [{lon, "float"}, {lat, "float"}], Context),
     ok.
+
+%% return existing and available garments for this location for the user.
+observe_available_garments({available_garments, [{id, Id}]}, Context) ->
+    User = z_acl:user(Context),
+
+    MyGarments = sets:from_list(m_edge:objects(User, has_garment, Context)),
+    
+    LocationGarments = sets:from_list(m_edge:objects(Id, has_garment, Context)),
+    
+    {sets:to_list(sets:intersection(MyGarments, LocationGarments)),
+     sets:to_list(sets:subtract(LocationGarments, MyGarments))
+    }.
+
+observe_grouped_garments(grouped_garments, Context) ->
+    User = z_acl:user(Context),
+
+    lists:foldl(fun(Id, Acc) ->
+                        Cat = m_rsc:p(Id, category_id, Context),
+                        case proplists:get_value(Cat, Acc) of
+                            undefined ->
+                                [{Cat, [Id]} | Acc];
+                            List ->
+                                z_utils:prop_replace(Cat, [Id|List], Acc)
+                        end
+                end,
+                [],
+                m_edge:objects(User, has_garment, Context)).
+
+
 
 manage_schema(install, _) ->
     #datamodel{
@@ -137,7 +170,34 @@ event(#postback{message={geo_check, _}}, Context) ->
             {ok, Dist < 10.004575305325603731}], %% warning - hardcoded nr :p
 %            {ok, Dist < 0.004575305325603731}], %% warning - hardcoded nr :p
     Html = z_template:render("_current_location.tpl", Vars, Context),
-    z_render:update("current-location", Html, Context).
+    z_render:update("current-location", Html, Context);
+
+
+event(#postback{message={remove_garment, [{id, Id}]}}, Context) ->
+    User = z_acl:user(Context),
+    m_edge:delete(User, has_garment, Id, Context),
+    m_edge:delete(User, is_wearing, Id, Context),
+    z_render:dialog_close(Context);
+
+event(#postback{message={add_garment, [{id, Id}]}}, Context) ->
+    User = z_acl:user(Context),
+    m_edge:insert(User, has_garment, Id, Context),
+    z_render:dialog("Pas nu je outfit aan", "_dialog_change_outfit.tpl", [], Context);
+
+event(#submit{message={change_outfit, _}}, Context) ->
+    Wearing = lists:foldl(
+                fun ({"c_" ++ _, R}, Acc) ->
+                       [list_to_integer(R) | Acc];
+                   (_X, Acc) -> Acc
+               end,
+               [],
+                z_context:get_q_all(Context)),
+    lager:warning("Wearing: ~p", [Wearing]),
+    %% update outfit
+    m_edge:replace(z_acl:user(Context), is_wearing, Wearing, Context),
+    dialog_view_avatar(Context).
+%%z_render:wire([{reload, []}], Context).
+
 
 dim(File) ->
     [_, _, S | _] = string:tokens(os:cmd("identify " ++ File), " "),
@@ -149,3 +209,6 @@ head_mask(TmpFile, Context) ->
     X=os:cmd("convert " ++ TmpFile ++ " -resize 600x600 " ++ Mask ++ " -resize 600x600 -alpha Set -compose DstOut -composite -auto-level /tmp/out.png"),
     "/tmp/out.png".
 
+
+dialog_view_avatar(Context) ->
+    z_render:dialog("Zo zie je er nu uit!", "_dialog_user_avatar.tpl", [{id, z_acl:user(Context)}, {class, "small"}], Context).

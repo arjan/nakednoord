@@ -5,15 +5,27 @@ div.content {
 }
 
 
-
-
 div.avatar {
     position: relative;
-
+    width: 600px;
+    
+    img {
+        width: 100%;
+    }
+    
+    img.garment {
+        position: absolute;
+        top: 0; left: 0;
+    }
+    
     img.face {
         position: absolute;
-        top: 78px;
-        left: 191px;
-        width: 219px;
+        top: 8.7%;
+        left: 31.5%;
+        width: 38%;
     }
+}
+
+div.avatar.small {
+    width: 300px;
 }
