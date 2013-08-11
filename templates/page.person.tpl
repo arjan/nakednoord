@@ -14,7 +14,7 @@
                 {% button id="change-avatar" class="btn btn-primary" text="Pas je outfit aan" icon="edit" action={dialog_open title="Pas je outfit aan" template="_dialog_change_outfit.tpl"} %}
         {% endif %}
         
-            {% button id="user-avatar" class="btn" text="Vervang avatar..." icon="edit" action={dialog_open width=400 title="Upload je avatar" template="_face_upload.tpl"} %}
+        {% button id="user-avatar" class="btn" text="Ander gezicht!" icon="edit" action={dialog_open width=400 title="Upload je avatar" template="_face_upload.tpl"} %}
         </div>
         
         {% include "_user_avatar.tpl" %}
