@@ -1,0 +1,19 @@
+/* Define your site-specific styles here. */
+
+div.content {
+/*    margin-top: 90px;*/
+}
+
+
+
+
+div.avatar {
+    position: relative;
+
+    img.face {
+        position: absolute;
+        top: 78px;
+        left: 191px;
+        width: 219px;
+    }
+}

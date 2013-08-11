@@ -21,6 +21,7 @@
 -mod_title("nakednoord zotonic site").
 -mod_description("An empty Zotonic site, to base your site on.").
 -mod_prio(10).
+-mod_schema(1).
 
 -include_lib("zotonic.hrl").
 
@@ -31,6 +32,7 @@
          observe_signup_done/2,
          observe_logon_ready_page/2,
          observe_custom_pivot/2,
+         manage_schema/2,
          event/2
         ]).
 
@@ -42,6 +44,30 @@
 init(Context) ->
     z_pivot_rsc:define_custom_pivot(?MODULE, [{lon, "float"}, {lat, "float"}], Context),
     ok.
+
+manage_schema(install, _) ->
+    #datamodel{
+               categories=[
+                           {garment, undefined, [{title, <<"Garment">>}]},
+                           
+                           {accessory, garment, [{title, <<"Accessoires">>}]},
+                           {head, garment, [{title, <<"Hoofdbedekking">>}]},
+                           {body, garment, [{title, <<"Bovenkleding">>}]},
+                           {trousers, garment, [{title, <<"Broeken en zo">>}]},
+                           {shoes, garment, [{title, <<"Schoeisel">>}]}
+                          ],
+               predicates=[
+                           {has_garment,
+                            [{title, <<"Possesses garment">>}],
+                            [{person, garment},
+                             {location, garment}]
+                           },
+                           {is_wearing,
+                            [{title, <<"Wearing garment">>}],
+                            [{person, garment}]
+                           }
+                          ]
+              }.
 
 
 observe_custom_pivot({custom_pivot, Id}, Context) ->
@@ -99,8 +125,9 @@ event(#postback{message={geo_check, _}}, Context) ->
     Lat = z_convert:to_float(z_context:get_q("lat", Context)),
 
     LocationCat = m_rsc:name_to_id_check(location, Context),
-    %%Query = "SELECT id, (point($1, $2) OPERATOR(public.<@>) point(p.lon, p.lat))/1.60934 as dist FROM rsc JOIN pivot_nakednoord p USING (id) WHERE category_id=$3 order by dist LIMIT 1",
-    Query = "SELECT id, sqrt(($1-p.lon)*($1-p.lon) + ($2-p.lat)*($2-p.lat)) as dist FROM rsc JOIN pivot_nakednoord p USING (id) WHERE category_id=$3 order by dist LIMIT 1",
+
+    Query = "SELECT id, (point($1, $2) OPERATOR(public.<@>) point(p.lon, p.lat))/1.60934 as dist FROM rsc JOIN pivot_nakednoord p USING (id) WHERE category_id=$3 order by dist LIMIT 1",
+    %%Query = "SELECT id, sqrt(($1-p.lon)*($1-p.lon) + ($2-p.lat)*($2-p.lat)) as dist FROM rsc JOIN pivot_nakednoord p USING (id) WHERE category_id=$3 order by dist LIMIT 1",
     
     [{Id, Dist}] = z_db:q(Query, [Lon, Lat, LocationCat], Context),
     

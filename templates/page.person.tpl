@@ -12,7 +12,7 @@
         {% include "_user_avatar.tpl" %}
 
         <div class="controls">
-            {% wire id="user-avatar" class="btn btn-mini" text="Replace..." icon="edit" action={dialog_open width=400 title="Face upload" template="_face_upload.tpl"} %}
+            {% button id="user-avatar" class="btn btn-mini" text="Vervang avatar..." icon="edit" action={dialog_open width=400 title="Face upload" template="_face_upload.tpl"} %}
         </div>
 
         <p>
