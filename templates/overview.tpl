@@ -1,5 +1,8 @@
 {% extends "base.tpl" %}
 
+{% block navbar %}
+    
+{% endblock %}
 {% block content %}
 
     <ul class="thumbnails">
