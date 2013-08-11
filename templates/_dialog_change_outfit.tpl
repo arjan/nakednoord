@@ -1,3 +1,5 @@
+{% if m.acl.user.o.has_garment %}
+
 {% wire type="submit" id="frm" postback={change_outfit} delegate=`nakednoord` %}
 <form action="postback" method="post" id="frm">
     {% with m.acl.user.o.is_wearing|make_list as is_wearing %}
@@ -17,3 +19,9 @@
 
     {% button text="Save outfit" class="btn btn-primary" %}
 </form>
+
+{% else %}
+    <p>Het lijkt erop alsof je nog geen kledingstukken hebt verzameld…!</p>
+{% endif %}
+
+        
