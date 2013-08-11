@@ -9,9 +9,9 @@
 
     {% else %}
 
-        <div class="well">
+        <div class="person-top">
 
-            <div class="controls pull-right" style="margin-top: -10px">
+            <div class="controls pull-right">
             {% if m.acl.user.o.has_garment %}
                 {% button id="change-avatar" class="btn btn-primary" text="Pas je outfit aan" icon="edit" action={dialog_open title="Pas je outfit aan" template="_dialog_change_outfit.tpl"} style="margin-bottom: 10px" %}<br/>
         {% endif %}
@@ -23,15 +23,15 @@
         
         </div>
 
+        
         <p>Zo zie je er nu uit:</p>
         
         {% include "_user_avatar.tpl" %}
 
         <p>
-            <br /><br />
-            <a href="/whereami" class="btn btn-primary btn-large">Go to the map to start the game!</a>
+            <a href="/whereami" class="btn btn-primary btn-large">Ga naar de kaart om te spelen!</a>
         </p>
-    
+        
     {% endif %}
 
 

@@ -32,4 +32,13 @@ div.avatar.small {
 
 @media (max-width: 600px) {
   div.avatar {
-    width: 100%; } }
+    width: 100%; }
+
+  .btn-large {
+    display: block;
+    width: 100%;
+    clear: both; } }
+div.location-top {
+  margin-bottom: 10px; }
+  div.location-top h3 {
+    margin-bottom: 10px; }

@@ -4,8 +4,8 @@
     
 {% else %}
 
-    <div class="well">
-        <p class="alert alert-info">Je bent vlak bij {{ id.title }}!</p>
+    <div class="location-top">
+        <h3>Je bent vlak bij {{ id.title }}!</h3>
         {% button class="btn btn-primary btn-large" text="Bekijk informatie over "|append:id.title
             action={dialog_open title=id.title width="90%"
                 template="_dialog_location.tpl" id=id}
