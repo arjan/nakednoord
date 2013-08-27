@@ -3,5 +3,7 @@
 [
  {home,      [],	controller_template,  	[ {template, "home.tpl"} ]},
  {whereami,      ["whereami"],	controller_template,  	[ {template, "map.tpl"}, {acl, is_auth} ]},
- {overview,      ["iedereen"],	controller_template,  	[ {template, "overview.tpl"} ]}
+ {overview,      ["iedereen"],	controller_template,  	[ {template, "overview.tpl"} ]},
+
+ {logon, ["logon"], controller_redirect, [{url, "/"}]}
 ].

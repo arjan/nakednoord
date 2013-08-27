@@ -13,7 +13,7 @@
 
             <div class="controls pull-right">
 
-                {% button id="change-avatar" class="btn btn-primary" text="Pas je outfit aan" icon="edit" action={dialog_open title="Pas je outfit aan" template="_dialog_change_outfit.tpl"} style="margin-bottom: 10px" %}<br/>
+                {% button id="change-avatar" class="btn btn-primary" text="Pas je outfit aan" icon="edit" action={dialog_open title="Pas je outfit aan" template="_dialog_change_outfit.tpl" from_person_page} style="margin-bottom: 10px" %}<br/>
                 
 
             </div>

@@ -1,6 +1,6 @@
 {% if m.acl.user.o.has_garment %}
 
-{% wire type="submit" id="frm" postback={change_outfit} delegate=`nakednoord` %}
+    {% wire type="submit" id="frm" postback={change_outfit from_person_page=from_person_page} delegate=`nakednoord` %}
 <form action="postback" method="post" id="frm">
     {% with m.acl.user.o.is_wearing|make_list as is_wearing %}
         {% for cat, items in m.notifier.first.grouped_garments %}
@@ -25,7 +25,7 @@
 </form>
 
 {% else %}
-    <p>Het lijkt erop alsof je nog geen kledingstukken hebt verzameld…!</p>
+    <p>Het lijkt erop alsof je nog geen kledingstukken hebt verzameld… <a href="/whereami">Ga naar de kaart</a> om daarmee te beginnen!</p>
 {% endif %}
 
 {% button id="user-avatar" class="btn" text="Ander gezicht" icon="edit" action={dialog_open title="Upload je avatar" template="_face_upload.tpl"} %}

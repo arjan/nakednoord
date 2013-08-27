@@ -191,7 +191,7 @@ event(#postback{message={add_garment, [{id, Id}]}}, Context) ->
     m_edge:insert(User, has_garment, Id, Context),
     z_render:dialog("Pas nu je outfit aan", "_dialog_change_outfit.tpl", [], Context);
 
-event(#submit{message={change_outfit, _}}, Context) ->
+event(#submit{message={change_outfit, [{from_person_page, F}]}}, Context) ->
     Wearing = lists:foldl(
                 fun ({"c_" ++ _, []}, Acc) ->
                         Acc;
@@ -204,8 +204,12 @@ event(#submit{message={change_outfit, _}}, Context) ->
     lager:warning("Wearing: ~p", [Wearing]),
     %% update outfit
     m_edge:replace(z_acl:user(Context), is_wearing, Wearing, Context),
-    dialog_view_avatar(Context).
-%%z_render:wire([{reload, []}], Context).
+    case F of
+        true ->
+            z_render:wire([{reload, []}], Context);
+        _ ->
+            dialog_view_avatar(Context)
+    end.
 
 
 dim(File) ->

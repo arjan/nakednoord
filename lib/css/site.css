@@ -110,3 +110,6 @@ p.person-title {
 div.notice-wrap {
   width: auto;
   left: 20px; }
+
+ul.thumbnails {
+  margin-left: -20px; }
