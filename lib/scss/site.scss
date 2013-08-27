@@ -1,7 +1,49 @@
 /* Define your site-specific styles here. */
+@mixin mainFont {
+    font-family: 'Loved by the King', cursive;
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+$green: #BECF23;
+$yellow: #ffff33;
 
 div.content {
-/*    margin-top: 90px;*/
+    margin-top: 20px;
+}
+
+body {
+    background: $green;
+    @include mainFont;
+}
+
+p, button, input, .btn {
+    @include mainFont;
+}
+
+.btn-primary {
+    background: darken($green, 15%);
+
+    &:hover {
+        background: darken($green, 25%);
+    }
+}
+
+
+.btn-nav {
+    background: darken($yellow, 15%);
+
+    &:hover {
+        background: darken($yellow, 25%);
+    }
+    border: 0;
+}
+
+.alert, 
+.alert-info {
+    background: $yellow;
+    border: darken($yellow, 35%);
+    color: black;
 }
 
 body.overview {
@@ -15,10 +57,13 @@ div.avatar {
     img {
         width: 100%;
     }
-    
+    img.arrow,
     img.garment {
         position: absolute;
         top: 0; left: 0;
+    }
+    img.arrow {
+        width: auto;
     }
     
     img.face {
@@ -40,13 +85,18 @@ div.avatar.small {
     width: 300px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 @media (max-width: 600px) {
     div.avatar {
         width: 100%;
     }
 
-    .btn-large {
+    .btn {
         display: block;
+        
         width: 100%;
         clear: both;
     }
@@ -63,4 +113,9 @@ div.location-top {
 p.person-title {
     font-weight: bold;
     text-align: center;
+}
+
+div.notice-wrap {
+    width: auto;
+    left: 20px;
 }

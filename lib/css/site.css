@@ -1,6 +1,34 @@
 /* Define your site-specific styles here. */
 div.content {
-  /*    margin-top: 90px;*/ }
+  margin-top: 20px; }
+
+body {
+  background: #becf23;
+  font-family: "Loved by the King", cursive;
+  font-size: 24px;
+  line-height: 1.5; }
+
+p, button, input, .btn {
+  font-family: "Loved by the King", cursive;
+  font-size: 24px;
+  line-height: 1.5; }
+
+.btn-primary {
+  background: #828e18; }
+  .btn-primary:hover {
+    background: #5a6211; }
+
+.btn-nav {
+  background: #e5e600;
+  border: 0; }
+  .btn-nav:hover {
+    background: #b2b300; }
+
+.alert,
+.alert-info {
+  background: #ffff33;
+  border: #7f8000;
+  color: black; }
 
 body.overview {
   padding: 0; }
@@ -10,10 +38,13 @@ div.avatar {
   width: 600px; }
   div.avatar img {
     width: 100%; }
+  div.avatar img.arrow,
   div.avatar img.garment {
     position: absolute;
     top: 0;
     left: 0; }
+  div.avatar img.arrow {
+    width: auto; }
   div.avatar img.face {
     position: absolute;
     top: 8.7%;
@@ -33,11 +64,14 @@ div.avatar {
 div.avatar.small {
   width: 300px; }
 
+* {
+  box-sizing: border-box; }
+
 @media (max-width: 600px) {
   div.avatar {
     width: 100%; }
 
-  .btn-large {
+  .btn {
     display: block;
     width: 100%;
     clear: both; } }
@@ -49,3 +83,7 @@ div.location-top {
 p.person-title {
   font-weight: bold;
   text-align: center; }
+
+div.notice-wrap {
+  width: auto;
+  left: 20px; }

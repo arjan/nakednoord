@@ -5,7 +5,7 @@
     
 
     {% if not id.o.depiction %}
-        {% include "_face_upload.tpl" %}
+        {% include "_face_upload.tpl" first_time %}
 
     {% else %}
 
@@ -25,12 +25,8 @@
 
         
         <p>Zo zie je er nu uit:</p>
-        
-        {% include "_user_avatar.tpl" %}
 
-        <p>
-            <a href="/whereami" class="btn btn-primary btn-large">Ga naar de kaart om te spelen!</a>
-        </p>
+        {% include "_user_avatar.tpl" with_arrow %}
         
     {% endif %}
 

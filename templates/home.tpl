@@ -15,20 +15,16 @@
         {% endjavascript %}
     {% else %}
 
-        <h1>Welkom bij de Naakte Noorderling!</h1>
+        <h1>Ontdek de verborgen geschiedenis van Amsterdam Noord.</h1>
+
+        <p>Met dit spel bezoek je historische locaties en leer je meer over de geschiedenis van dit stadsdeel. </p>
+
+        <p>Onderweg vind je allerlei kleding en accessoires om je avatar aan te kleden. Share je beste outfit op Facebook!</p>
+
+        <p class="alert alert-info">Om te spelen en te onthouden welke kleding je hebt verzameld moet je inloggen. </p>
 
         <p>
-            Discover <em>Amsterdam Noord</em> by visiting historical locations and learning about the history of the city.
-        </p>
-
-        <p>
-            At the same time, dress up your avatar with the historical garments you find along the way!
-        </p>
-        
-        <p class="alert alert-info">You need to sign in to start.</p>
-
-        <p>
-            <a href="{% url facebook_authorize %}"><img src="/lib/images/fb-login-button.png" width="154" height="22" alt="Facebook login button" /></a>
+            <a class="btn btn-primary btn-large" href="{% url facebook_authorize %}">Inloggen met Facebook</a>
         </p>
         
     {% endif %}

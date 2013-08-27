@@ -117,15 +117,21 @@ observe_custom_pivot({custom_pivot, Id}, Context) ->
 
 
 observe_signup_url(#signup_url{props=Props, signup_props=SignupProps}, Context) ->
-    mod_signup:signup_existing(undefined, Props, SignupProps, false, Context),
-    {ok, "/"}.
+    {ok, _UserId} = mod_signup:signup_existing(undefined, Props, SignupProps, false, Context),
+    {ok, "/facebook/authorize"}. %% do the dance again to go with the flow
 
 
 %% @doc Check if a module wants to redirect to the signup form.  Returns either {ok, Location} or undefined.
-observe_signup_done(Msg, Context) ->
-    ok.
+observe_signup_done(#signup_done{id=UserId, props=Props}, Context) ->
+    {ok, ContextLogon} = z_auth:logon(UserId, Context),
+    m_rsc:update(UserId, Props, ContextLogon),
+    lager:warning("123: ~p", [123]),
+    lager:warning("Props: ~p", [Props]),
+    lager:warning("UserId: ~p", [UserId]),
+    {ok, m_rsc:p(z_acl:user(ContextLogon), page_url, ContextLogon)}.
 
 observe_logon_ready_page(#logon_ready_page{request_page=[]}, Context) ->
+    lager:warning("logon_ready: ~p", [xx]),
     case z_auth:is_auth(Context) of
         true -> m_rsc:p(z_acl:user(Context), page_url, Context);
         false -> []
@@ -136,21 +142,22 @@ observe_logon_ready_page(#logon_ready_page{request_page=Url}, _Context) ->
 
 event(#submit{message={face_upload, _}}, Context) ->
 
-    F = z_context:get_q("file", Context),
-    TmpName = F#upload.tmpfile,
-    lager:warning("F: ~p", [TmpName]),
-
-    case os:cmd("/usr/local/bin/faceservice " ++ TmpName) of
-        Cmd = "mogrify " ++ _ ->
-            os:cmd(Cmd),
-            lager:warning("TmpName: ~p", [TmpName]),
-            {ok, MediaId} = m_media:insert_file(head_mask(TmpName, Context), Context),
-            m_edge:replace(z_acl:user(Context), depiction, [MediaId], Context),
-            z_render:wire([{reload, []}], Context);
-        "nofaces\n" ->
-            z_render:growl("Sorry, we could not recognize a face in this image...sorry!", Context);
-        Other ->
-            z_render:growl("Sorry, this image cannot be used: " ++ Other, Context)
+    case z_context:get_q("file", Context) of
+        #upload{tmpfile=TmpName} ->
+            case os:cmd("/usr/local/bin/faceservice " ++ TmpName) of
+                Cmd = "mogrify " ++ _ ->
+                    os:cmd(Cmd),
+                    lager:warning("TmpName: ~p", [TmpName]),
+                    {ok, MediaId} = m_media:insert_file(head_mask(TmpName, Context), Context),
+                    m_edge:replace(z_acl:user(Context), depiction, [MediaId], Context),
+                    z_render:wire([{reload, []}], Context);
+                "nofaces\n" ++ _ ->
+                    z_render:growl("Hmm, het lukt me niet hier een gezicht in te herkennen!", Context);
+                _Other ->
+                    z_render:growl("Dit plaatje is onbruikbaar... :-/", Context)
+            end;
+        _ ->
+            z_render:growl("Kies a.u.b. een bestand!", Context)
     end;
 
 event(#postback{message={geo_check, _}}, Context) ->
