@@ -171,20 +171,21 @@ event(#postback{message={geo_check, _}}, Context) ->
     
     [{Id, Dist}] = z_db:q(Query, [Lon, Lat, LocationCat], Context),
     
-%%    lager:warning("Dist: ~p", [Dist]),
+%    lager:warning("Dist: ~p", [Dist]),
     Vars = [{id, Id},
             {dist, Dist},
-            {ok, Dist < 10.004575305325603731}], %% warning - hardcoded nr :p
-%            {ok, Dist < 0.004575305325603731}], %% warning - hardcoded nr :p
+%            {ok, true}],
+            {ok, Dist < 0.5}], %% warning - hardcoded nr :p
     Html = z_template:render("_current_location.tpl", Vars, Context),
     z_render:update("current-location", Html, Context);
 
 
-event(#postback{message={remove_garment, [{id, Id}]}}, Context) ->
+event(#postback{message={remove_garment, [{id, Id}, {location_id, LocationId}]}}, Context) ->
     User = z_acl:user(Context),
     m_edge:delete(User, has_garment, Id, Context),
     m_edge:delete(User, is_wearing, Id, Context),
-    z_render:dialog_close(Context);
+    z_render:update(" .modal-body", z_template:render("_dialog_location.tpl", [{id, LocationId}], Context), Context);
+%    z_render:dialog_close(Context);
 
 event(#postback{message={add_garment, [{id, Id}]}}, Context) ->
     User = z_acl:user(Context),

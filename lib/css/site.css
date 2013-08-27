@@ -31,9 +31,10 @@ h1, h2, h3, button, input, .btn, .font {
   border-radius: 0; }
 
 .btn-primary {
-  background: #828e18; }
+  background: #006ab2;
+  color: white; }
   .btn-primary:hover {
-    background: #5a6211; }
+    background: #003c65; }
 
 .btn-nav {
   background: #e5e600;

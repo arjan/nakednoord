@@ -9,12 +9,12 @@
     {% if my_garments %}
         <h2>Dit kledingstuk heb je van deze lokatie:</h2>
         <ul class="thumbnails">
-            {% for id in my_garments %}
+            {% for gid in my_garments %}
                 <li class="span2">
                     <a href="#" class="thumbnail">
-                        {% image id.o.depiction|last width=170 title=id.title %}
+                        {% image gid.o.depiction|last width=170 title=gid.title %}
                         {% button class="btn btn-mini" text="Ik wil deze niet meer"
-                            postback={remove_garment id=id} delegate=`nakednoord` %}
+                            postback={remove_garment id=gid location_id=id} delegate=`nakednoord` %}
                     </a>
                 </li>
             {% endfor %}

@@ -1,6 +1,6 @@
 {% if not id or not ok %}
 
-    <p class="alert alert-error">Je moet dichter naar een lokatie toe gaan!</p>
+    <p class="alert alert-error">Neem achter Amsterdam Centraal Station de pont naar Noord om dichterbij de locaties te komen!</p>
     
 {% else %}
 
