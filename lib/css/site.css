@@ -123,3 +123,6 @@ table.outfit {
   table.outfit td label {
     font-size: 18px;
     padding-bottom: 4px; }
+
+body.modal-open {
+  overflow: hidden; }
