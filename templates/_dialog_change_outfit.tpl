@@ -28,4 +28,4 @@
     <p>Het lijkt erop alsof je nog geen kledingstukken hebt verzameld…!</p>
 {% endif %}
 
-        
+{% button id="user-avatar" class="btn" text="Ander gezicht" icon="edit" action={dialog_open title="Upload je avatar" template="_face_upload.tpl"} %}

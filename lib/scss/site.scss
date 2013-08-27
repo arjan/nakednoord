@@ -17,6 +17,7 @@
 
 $green: #BECF23;
 $yellow: #ffff33;
+$red: #ee0000;
 
 h1, h2, h3, h4, b {
     font-weight: normal;
@@ -34,8 +35,17 @@ body {
     background: $green;
 }
 
-h1,h2,h3,button, input, .btn {
+body, p {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+h1,h2,h3,button, input, .btn, .font {
     @include mainFont;
+}
+
+.btn {
+    border-radius: 0;
 }
 
 .btn-primary {
@@ -58,9 +68,16 @@ h1,h2,h3,button, input, .btn {
 
 .alert, 
 .alert-info {
+    border-radius: 0;
     background: $yellow;
     border: darken($yellow, 35%);
     color: black;
+}
+
+.alert-error {
+    background: $red;
+    border: darken($red, 35%);
+    color: white;
 }
 
 body.overview {
@@ -122,8 +139,9 @@ div.avatar.small {
 
 div.location-top {
     margin-bottom: 10px;
-    h3 {
-        margin-bottom: 10px;
+    padding: 10px;
+    background: $yellow;
+    .btn {
     }
 }
 

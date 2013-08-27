@@ -5,8 +5,7 @@
 {% else %}
 
     <div class="location-top">
-        <h1>Je bent vlak bij {{ id.title }}!</h1>
-        {% button class="btn btn-primary btn-large" text="Bekijk informatie over "|append:id.title
+        {% button class="btn btn-primary btn-large" text="Je bent vlak bij "|append:id.title|append:"!"
             action={dialog_open title=id.title width="90%"
                 template="_dialog_location.tpl" id=id}
         %}
