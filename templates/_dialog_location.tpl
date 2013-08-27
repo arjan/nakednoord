@@ -45,3 +45,4 @@
     {% endwith %}
 
 
+    {% button class="btn" text="Sluiten" action={dialog_close} %}

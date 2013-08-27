@@ -113,3 +113,12 @@ div.notice-wrap {
 
 ul.thumbnails {
   margin-left: -20px; }
+
+#zmodal {
+  max-height: 96%; }
+
+table.outfit {
+  margin-bottom: 20px; }
+  table.outfit td label {
+    font-size: 18px;
+    padding-bottom: 4px; }
