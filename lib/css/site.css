@@ -1,4 +1,9 @@
 /* Define your site-specific styles here. */
+.modal-header h3 {
+  font-family: "Loved by the King", cursive;
+  font-size: 38px;
+  line-height: 1.5; }
+
 h1, h2, h3, h4, b {
   font-weight: normal; }
 
@@ -11,12 +16,9 @@ div.content {
   margin-top: 20px; }
 
 body {
-  background: #becf23;
-  font-family: "Loved by the King", cursive;
-  font-size: 24px;
-  line-height: 1.5; }
+  background: #becf23; }
 
-p, button, input, .btn {
+h1, h2, h3, button, input, .btn {
   font-family: "Loved by the King", cursive;
   font-size: 24px;
   line-height: 1.5; }

@@ -11,6 +11,10 @@
     line-height: 1.5;
 }
 
+.modal-header h3 {
+    @include largeFont;
+}
+
 $green: #BECF23;
 $yellow: #ffff33;
 
@@ -28,10 +32,9 @@ div.content {
 
 body {
     background: $green;
-    @include mainFont;
 }
 
-p, button, input, .btn {
+h1,h2,h3,button, input, .btn {
     @include mainFont;
 }
 
