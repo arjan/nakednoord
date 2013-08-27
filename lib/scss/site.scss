@@ -5,8 +5,22 @@
     line-height: 1.5;
 }
 
+@mixin largeFont {
+    font-family: 'Loved by the King', cursive;
+    font-size: 38px;
+    line-height: 1.5;
+}
+
 $green: #BECF23;
 $yellow: #ffff33;
+
+h1, h2, h3, h4, b {
+    font-weight: normal;
+}
+
+h1 {
+    @include largeFont;
+}
 
 div.content {
     margin-top: 20px;

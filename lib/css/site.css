@@ -1,4 +1,12 @@
 /* Define your site-specific styles here. */
+h1, h2, h3, h4, b {
+  font-weight: normal; }
+
+h1 {
+  font-family: "Loved by the King", cursive;
+  font-size: 38px;
+  line-height: 1.5; }
+
 div.content {
   margin-top: 20px; }
 
