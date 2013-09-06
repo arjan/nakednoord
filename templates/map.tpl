@@ -1,7 +1,7 @@
 {% extends "base.tpl" %}
 
 {% block content_area %}
-    {% lib "js/openlayers/OpenLayers.js" "js/map.js" %}
+    {% lib "js/map.js" %}
 
     <div class="content">
 
@@ -17,10 +17,6 @@
 
         {% wire name="geo_check" postback={geo_check} delegate=`nakednoord` %}
 
-        {% javascript %}
-            initMap();
-        {% endjavascript %}
-        
     </div>
     
 {% endblock %}
