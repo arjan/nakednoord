@@ -8,7 +8,7 @@
 
     <ul class="thumbnails overview">
 
-        {% for id in m.search[{query cat='person' sort="-modified" pagelen=100}] %}
+        {% for id in m.search[{query cat='person' sort="-modified" id_exclude=1 pagelen=100}] %}
             {% with m.rsc[id].o.depiction[2] as outfit %}
                 {% if outfit %}
                     <li class="span3">
