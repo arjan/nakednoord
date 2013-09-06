@@ -17,6 +17,11 @@
         {% endfor %}
 
         {% wire name="geo_check" postback={geo_check} delegate=`nakednoord` %}
+
+        {% javascript %}
+            initMap();
+        {% endjavascript %}
+        
     </div>
     
 {% endblock %}
