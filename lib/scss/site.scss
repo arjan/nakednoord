@@ -126,11 +126,23 @@ div.avatar.small {
     box-sizing: border-box;
 }
 
+
+#map {
+    width: 100%;
+    img {
+        max-width: none;
+    }
+}
+
 @media (max-width: 600px) {
     div.avatar {
         width: 100%;
     }
 
+    #map {
+        width: 100%;
+    }
+    
     .btn {
         display: block;
         
@@ -180,4 +192,14 @@ table.outfit {
 
 body.modal-open {
     overflow: hidden;
+}
+
+
+ul.overview {
+    li {
+        img {
+            display: inline-block;
+        }
+        text-align: center;
+    }
 }

@@ -92,8 +92,16 @@ div.avatar.small {
 * {
   box-sizing: border-box; }
 
+#map {
+  width: 100%; }
+  #map img {
+    max-width: none; }
+
 @media (max-width: 600px) {
   div.avatar {
+    width: 100%; }
+
+  #map {
     width: 100%; }
 
   .btn {
@@ -127,3 +135,8 @@ table.outfit {
 
 body.modal-open {
   overflow: hidden; }
+
+ul.overview li {
+  text-align: center; }
+  ul.overview li img {
+    display: inline-block; }

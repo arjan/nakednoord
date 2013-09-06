@@ -6,13 +6,19 @@
 
 {% block content %}
 
-    <ul class="thumbnails">
+    <ul class="thumbnails overview">
+
         {% for id in m.search[{query cat='person' sort="-modified" pagelen=100}] %}
-            <li class="span4">
-                {% include "_user_avatar.tpl" id=id class="small" %}
-                <p class="person-title">{{ id.title }}</p>
-            </li>
+            {% with m.rsc[id].o.depiction[2] as outfit %}
+                {% if outfit %}
+                    <li class="span3">
+                        {% image outfit width=200 lossless %}
+                        <p class="person-title">{{ id.title }}</p>
+                    </li>
+                {% endif %}
+            {% endwith %}
         {% endfor %}
+        
     </ul>        
 
     {% javascript %}
