@@ -204,3 +204,13 @@ ul.overview {
         text-align: center;
     }
 }
+
+div.footer {
+    margin-top: 50px;
+    border-top: 1px dotted #333333;
+    p, a {
+        color: #333333;
+    }
+    p { padding: 10px; }
+    a { text-decoration: underline; }
+}

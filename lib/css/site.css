@@ -141,3 +141,13 @@ ul.overview li {
   text-align: center; }
   ul.overview li img {
     display: inline-block; }
+
+div.footer {
+  margin-top: 50px;
+  border-top: 1px dotted #333333; }
+  div.footer p, div.footer a {
+    color: #333333; }
+  div.footer p {
+    padding: 10px; }
+  div.footer a {
+    text-decoration: underline; }
