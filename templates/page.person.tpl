@@ -55,13 +55,17 @@
         {% with m.rsc[id].o.depiction[2] as outfit %}
             {% if outfit %}
                 <p class="pull-right">
-                    <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ "http://naaktenoorderling.nl/"|append:id.page_url|urlencode }}" target="_blank">Deel op Facebook</a>
+                    <a href="btn" href="/">Maak ook je eigen Noorderling!</a>
                 </p>
-                <h2>Zo ziet {{ id.name_first }} er uit:</h2>
-
+                
+                <h2>Zo ziet {{ id.name_first }} er op dit moment uit:</h2>
                 
                 <p>
                     {% image outfit lossless %}
+                </p>
+
+                <p class="pull-right">
+                    <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ "http://naaktenoorderling.nl/"|append:id.page_url|urlencode }}" target="_blank">Deel op Facebook</a>
                 </p>
                 
             {% else %}
