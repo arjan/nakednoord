@@ -35,7 +35,7 @@
                 <div class="controls pull-right">
 
                     {% button id="change-avatar" class="btn btn-primary" text="Pas je outfit aan" icon="edit" action={dialog_open title="Pas je outfit aan" template="_dialog_change_outfit.tpl" from_person_page} style="margin-bottom: 10px" %}
-                    <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={% url page id=id use_absolute_url %}" target="_blank">Deel op Facebook</a>
+                    <a style="display:block" href="https://www.facebook.com/sharer/sharer.php?u={{ "http://naaktenoorderling.nl/"|append:id.page_url|urlencode }}" target="_blank">Deel op Facebook</a>
 
                 </div>
                 
@@ -55,7 +55,7 @@
         {% with m.rsc[id].o.depiction[2] as outfit %}
             {% if outfit %}
                 <p class="pull-right">
-                    <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={% url page id=id use_absolute_url %}" target="_blank">Deel op Facebook</a>
+                    <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ "http://naaktenoorderling.nl/"|append:id.page_url|urlencode }}" target="_blank">Deel op Facebook</a>
                 </p>
                 <h2>Zo ziet {{ id.name_first }} er uit:</h2>
 
