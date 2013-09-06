@@ -177,7 +177,7 @@ event(#postback{message={geo_check, _}}, Context) ->
     Vars = [{id, Id},
             {dist, Dist},
 %            {ok, true}],
-            {ok, Dist < 0.5}], %% warning - hardcoded nr :p
+            {ok, Dist < 1.0}], %% warning - hardcoded nr :p
     Html = z_template:render("_current_location.tpl", Vars, Context),
     z_render:update("current-location", Html, Context);
 

@@ -5,6 +5,8 @@
 
     <div class="content">
 
+        <img style="display:none" id="avatar" src="{% image_url m.acl.user.depiction lossless width=50 %}" />
+        
         <div id="current-location">
             {% include "_current_location.tpl" %}
         </div>
