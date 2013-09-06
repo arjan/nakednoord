@@ -34,8 +34,7 @@
 
                 <div class="controls pull-right">
 
-                    {% button id="change-avatar" class="btn btn-primary" text="Pas je outfit aan" icon="edit" action={dialog_open title="Pas je outfit aan" template="_dialog_change_outfit.tpl" from_person_page} style="margin-bottom: 10px" %}<br/>
-                    
+                    {% button id="change-avatar" class="btn btn-primary" text="Pas je outfit aan" icon="edit" action={dialog_open title="Pas je outfit aan" template="_dialog_change_outfit.tpl" from_person_page} style="margin-bottom: 10px" %}
                     <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={% url page id=id use_absolute_url %}" target="_blank">Deel op Facebook</a>
 
                 </div>
