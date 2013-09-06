@@ -7,7 +7,7 @@
 {% with m.notifier.first[{available_garments id=id}] as my_garments, other_garments %}
 
     {% if my_garments %}
-        <h2>Dit kledingstuk heb je van deze lokatie:</h2>
+        <h2>Dit kledingstuk heb je van deze locatie:</h2>
         <ul class="thumbnails">
             {% for gid in my_garments %}
                 <li class="span2">

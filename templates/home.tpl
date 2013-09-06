@@ -1,6 +1,6 @@
 {% extends "base.tpl" %}
 
-{% block title %}{{ m.site.title }}{% endblock %}
+{% block title %}De Naakte Noorderling{% endblock %}
 
 {% block content %}
 
