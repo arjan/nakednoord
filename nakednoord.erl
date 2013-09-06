@@ -177,7 +177,7 @@ event(#postback{message={geo_check, _}}, Context) ->
     Vars = [{id, Id},
             {dist, Dist},
 %            {ok, true}],
-            {ok, Dist <= 0.5}], %% warning - hardcoded nr :p
+            {ok, Dist < 0.5}], %% warning - hardcoded nr :p
     Html = z_template:render("_current_location.tpl", Vars, Context),
     z_render:update("current-location", Html, Context);
 
@@ -257,7 +257,8 @@ make_avatar_image_real(UserId, Context) ->
                       Id;
                   Id -> Id
               end,
-    m_media:replace_file(F, MediaId, Context).
+    m_media:replace_file(F, MediaId, Context),
+    file:delete(F).
 
 
 make_avatar_image_cmd(UserId, Context) ->
@@ -270,11 +271,11 @@ make_avatar_image_cmd(UserId, Context) ->
                                     [" \\( ", z_utils:os_filename(F), " -resize 600 \\) -composite"]
                             end,
                             GarmentIds),
-    
+    F = "/tmp/comp_" ++ z_ids:id() ++ ".png",
     {["convert -resize 600 ",  z_utils:os_filename(Basis),
      " \\( ", z_utils:os_filename(Head), " -resize 228 \\) -gravity center -geometry +0-220 -composite",
      GarmentCmds,
-     " /tmp/comp.png"], "/tmp/comp.png"}.
+     " ", F], F}.
 
 
 
