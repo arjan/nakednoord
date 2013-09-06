@@ -36,6 +36,7 @@
 
                     {% button id="change-avatar" class="btn btn-primary" text="Pas je outfit aan" icon="edit" action={dialog_open title="Pas je outfit aan" template="_dialog_change_outfit.tpl" from_person_page} style="margin-bottom: 10px" %}<br/>
                     
+                    <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={% url page id=id use_absolute_url %}" target="_blank">Deel op Facebook</a>
 
                 </div>
                 
@@ -47,10 +48,6 @@
 
             {% include "_user_avatar.tpl" with_arrow %}
 
-                <p class="pull-right">
-                    <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={% url page id=id use_absolute_url %}" target="_blank">Deel op Facebook</a>
-                </p>
-            
         {% endif %}
 
     {% else %}
