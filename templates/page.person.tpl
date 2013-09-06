@@ -55,7 +55,7 @@
         {% with m.rsc[id].o.depiction[2] as outfit %}
             {% if outfit %}
                 <p class="pull-right">
-                    <a href="btn" href="/">Maak ook je eigen Noorderling!</a>
+                    <a class="btn" href="/">Maak ook je eigen Noorderling!</a>
                 </p>
                 
                 <h2>Zo ziet {{ id.name_first }} er op dit moment uit:</h2>
