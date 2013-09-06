@@ -16,7 +16,8 @@ div.content {
   margin-top: 20px; }
 
 body {
-  background: #becf23; }
+  background: #becf23;
+  padding: 8px; }
 
 body, p {
   font-size: 14px;
