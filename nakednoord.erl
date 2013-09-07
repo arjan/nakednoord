@@ -155,7 +155,7 @@ event(#submit{message={face_upload, _}}, Context) ->
                     make_avatar_image(User, Context),
                     z_render:wire([{reload, []}], Context);
                 _Other ->
-                    io:format("~p~n", [_Other]),
+                    lager:warning("Face error: ~p~n", [_Other]),
 
                     z_render:growl("Hmm, het lukt me niet hier een gezicht in te herkennen!", Context)
             end;
