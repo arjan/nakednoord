@@ -13,7 +13,7 @@
                 {% if outfit %}
                     <li class="span3">
                         {% image outfit width=200 lossless %}
-                        <p class="person-title">{{ id.title }}</p>
+                        <p class="person-title">{{ id.name_first|default:id.title }}</p>
                     </li>
                 {% endif %}
             {% endwith %}
