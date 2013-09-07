@@ -22,7 +22,7 @@
     </ul>        
 
     {% javascript %}
-        setTimeout(function() { document.location.reload(); }, 60*1000);
+        setTimeout(function() { document.location.reload(); }, 5*60*1000);
     {% endjavascript %}
     
 {% endblock %}
