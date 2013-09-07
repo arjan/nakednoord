@@ -144,7 +144,8 @@ event(#submit{message={face_upload, _}}, Context) ->
 
     case z_context:get_q("file", Context) of
         #upload{tmpfile=TmpName} ->
-            case os:cmd("/usr/local/bin/faceservice " ++ TmpName) of
+            os:cmd("jhead -autorot " ++ TmpName),
+            case os:cmd("/usr/local/bin/find-face --cascade=/usr/local/share/faceservice/face_detect.xml " ++ TmpName) of
                 Cmd = "mogrify " ++ _ ->
                     os:cmd(Cmd),
                     lager:warning("TmpName: ~p", [TmpName]),
@@ -153,10 +154,10 @@ event(#submit{message={face_upload, _}}, Context) ->
                     m_edge:replace(User, depiction, [MediaId], Context),
                     make_avatar_image(User, Context),
                     z_render:wire([{reload, []}], Context);
-                "nofaces\n" ++ _ ->
-                    z_render:growl("Hmm, het lukt me niet hier een gezicht in te herkennen!", Context);
                 _Other ->
-                    z_render:growl("Dit plaatje is onbruikbaar... :-/", Context)
+                    io:format("~p~n", [_Other]),
+
+                    z_render:growl("Hmm, het lukt me niet hier een gezicht in te herkennen!", Context)
             end;
         _ ->
             z_render:growl("Kies a.u.b. een bestand!", Context)
